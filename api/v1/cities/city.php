@@ -2,10 +2,13 @@
     ($_SERVER['REQUEST_METHOD'] == 'POST') || die('The requested URL does not exist.');
     
     include "..\..\..\loader.php";
-
     use App\Services\Cities;
+    use App\Services\Response;
 
-    $country = $_POST['country'];
+    $data = array(
+        "country" => $_POST['country'],
+        "firstname" => $_POST['firstname'],
+        "lastname" => $_POST['lastname'],
+    );
 
-    $city = new Cities();
-    echo $city->getCity($country);
+    Response::respond($data,Response::HTTP_OK);
