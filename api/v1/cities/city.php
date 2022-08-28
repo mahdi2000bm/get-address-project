@@ -5,9 +5,7 @@
 
     use App\Services\Cities;
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $country = $_POST['country'];
+    $country = $_POST['country'];
 
-        $city = new Cities();
-        echo $city->getCity($country);
-    }
+    $city = new Cities();
+    echo $city->getCity($country);
