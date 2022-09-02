@@ -1,14 +1,31 @@
-<?php
-    ($_SERVER['REQUEST_METHOD'] == 'POST') || die('The requested URL does not exist.');
-    
+<?php    
     include "..\..\..\loader.php";
     use App\Services\Cities;
     use App\Services\Response;
+    
+    $rowBody = json_decode(file_get_contents('php://input'));
 
-    $data = array(
-        "country" => $_POST['country'],
-        "firstname" => $_POST['firstname'],
-        "lastname" => $_POST['lastname'],
-    );
+    switch($_SERVER['REQUEST_METHOD']):
 
-    Response::respond($data,Response::HTTP_OK);
+        case "POST":
+            $data = array("POST");
+            Response::respond($data,Response::HTTP_OK);
+
+        case "GET":
+
+            $city = array(
+                "id" => $_GET["id"]
+            );
+            
+            Response::respond($city,Response::HTTP_OK);
+
+        case "DELETE":
+            $data = array("DELETE");
+            Response::respond($data,Response::HTTP_OK);
+
+        case "PUT":
+            $data = array("PUT");
+            Response::respond($data,Response::HTTP_OK);
+
+    endswitch;
+

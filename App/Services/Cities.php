@@ -3,8 +3,8 @@
 
     class Cities {
 
-        public function getCity(string $cityName = null)
+        public static function getCity(string $cityName = null)
         {
             return $cityName;
         }
-    }
+    }   

@@ -147,6 +147,7 @@
             );
 
             echo json_encode($response);
+            die();
         }
 
         private static function setHeader($status_code)
