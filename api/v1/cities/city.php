@@ -11,15 +11,13 @@
 
             $cityService = new Cities();
             echo $cityService->getCity('yazd');
-            Response::respond($_POST,Response::HTTP_OK);
+            Response::respond($_POST,ط÷Response::HTTP_OK);
 
         break;
 
         case "GET":
 
-            $city = array(
-                "id" => "565"
-            );
+            $city = array( "id" => "565" );
 
             $cityService = new CityService();
             print_r($cityService->getCity($city));
