@@ -3,21 +3,28 @@
     use App\Services\Cities;
     use App\Services\Response;
     
-    $rowBody = json_decode(file_get_contents('php://input'));
+    // $rowBody = json_decode(file_get_contents('php://input'));
 
     switch($_SERVER['REQUEST_METHOD']):
 
         case "POST":
-            $data = array("POST");
-            Response::respond($data,Response::HTTP_OK);
+
+            $cityService = new Cities();
+            echo $cityService->getCity('yazd');
+            Response::respond($_POST,Response::HTTP_OK);
+
+        break;
 
         case "GET":
 
             $city = array(
-                "id" => $_GET["id"]
+                "id" => "565"
             );
-            
-            Response::respond($city,Response::HTTP_OK);
+
+            $cityService = new CityService();
+            print_r($cityService->getCity($city));
+
+            // Response::respond($city,Response::HTTP_OK);
 
         case "DELETE":
             $data = array("DELETE");

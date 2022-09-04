@@ -5,7 +5,7 @@
         if(file_exists($dir) and is_readable($dir)){
             include $dir;
             header("HTTP/1.1 200 Ok");
-        }else{
+        }else{            
             header("Location: http://localhost/get-address-project", false, 301);
             exit();
         }
