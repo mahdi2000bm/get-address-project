@@ -1,10 +1,10 @@
 <?php
 namespace App\Models;
-use baseConnection;
 
+use baseConnection;
 include_once "config.php";
 
-class CityModel {
+class ProvinceModel {
 
     private $connection;
 
@@ -14,7 +14,7 @@ class CityModel {
     }
     public function findAll()
     {
-        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM city");
+        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM province");
         return $stmt->fetchAll();
     }
 
