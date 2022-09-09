@@ -12,9 +12,14 @@ class CityModel {
     {
         $this->connection = baseConnection::dbConn();
     }
-    public function findAll()
+    public function findAll($page = null, $perPage = null)
     {
-        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM city");
+        $limit = "";
+        if(is_numeric($page) and is_numeric($perPage)){
+            $page = ($page - 1) * $perPage;
+            $limit = " LIMIT $page,$perPage";
+        }
+        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM city $limit");
         return $stmt->fetchAll();
     }
     public function find($id)

@@ -10,7 +10,17 @@ $rowData = json_decode(file_get_contents("php://input"));
 switch($_SERVER['REQUEST_METHOD']):
 
     case "GET":
-        $cities = $cityModel->findAll();
+
+        $page = null;
+        $perPage = null;
+
+        if (isset($_GET['page']) and isset($_GET['per_page']) )
+        {
+            $page = $_GET['page'];
+            $perPage = $_GET['per_page'];
+        }
+        
+        $cities = $cityModel->findAll($page, $perPage);
         Response::respond($cities,Response::HTTP_OK);
 
     case "POST":
