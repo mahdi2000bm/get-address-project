@@ -7,20 +7,21 @@ use App\Services\Response;
 $cityModel = new CityModel();
 $rowData = json_decode(file_get_contents("php://input"));
 
+/**
+ * @param $_GET Array Key
+ */
+    function getVar($param)
+    {    
+        if( ! isset($_GET[$param]))
+            $_GET[$param] = null; 
+
+        return $_GET[$param];
+    }
+
 switch($_SERVER['REQUEST_METHOD']):
 
     case "GET":
-
-        $page = null;
-        $perPage = null;
-
-        if (isset($_GET['page']) and isset($_GET['per_page']) )
-        {
-            $page = $_GET['page'];
-            $perPage = $_GET['per_page'];
-        }
-        
-        $cities = $cityModel->findAll($page, $perPage);
+        $cities = $cityModel->findAll(getVar('page'), getVar('per_page'), getVar('fields'));
         Response::respond($cities,Response::HTTP_OK);
 
     case "POST":
