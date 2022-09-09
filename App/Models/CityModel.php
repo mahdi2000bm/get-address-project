@@ -29,15 +29,19 @@ class CityModel {
         $stmt->execute([':cityName' => $cityName, ':provinceName' => $provinceName]);
         return $stmt->rowCount();
     }
-    public function update()
+    public function update($id,$name)
     {
-        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM city");
-        return $stmt->fetchAll();
+        $sql = "UPDATE `city` SET `name` = :name WHERE `city`.`id` = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([":name" => $name, ":id" => $id]);
+        return $stmt->rowCount();
     }
-    public function delete()
+    public function delete($id)
     {
-        $stmt = $this->connection->query( /** @lang query */ "SELECT * FROM city");
-        return $stmt->fetchAll();
+        $sql = "DELETE FROM `city` WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $result = $stmt->execute([":id" => $id]);
+        return $stmt->rowCount();
     }
 
 }

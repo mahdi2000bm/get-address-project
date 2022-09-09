@@ -16,6 +16,15 @@ switch($_SERVER['REQUEST_METHOD']):
     case "POST":
         $result = $cityModel->create($rowData->cityname,$rowData->provincname);
         Response::respond(["Added successfully, the number of cities added: $result"],Response::HTTP_CREATED);
+    
+    case "DELETE":
+        $result = $cityModel->delete($rowData->id);
+        Response::respond(["Added Deleted $result city"],Response::HTTP_OK);
+
+    case "PUT":
+        $result = $cityModel->update($rowData->id,$rowData->cityname);
+        Response::respond(["The name of the city was successfully changed : $result"],Response::HTTP_OK);
+
 
 endswitch;
 
